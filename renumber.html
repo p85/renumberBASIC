@@ -1,0 +1,20 @@
+<script src="renumber.js"></script>
+<html>
+    <title>Renumber BASIC Programs</title>
+    <body>
+        <h1>Renumber BASIC Programs</h1>
+            This Script converts BASIC Programs without LineNumbers and with Labels (for GOTO/GOSUB) to a BASIC Compatible Program.<br>
+            You enter you Program without Line Numbers. Incase of GOTO/GOSUB you enter it like:<br>
+            <pre>110 GOTO &lt;LABEL&gt;</pre><br>
+            Then you have the &lt;LABEL&gt; Tag infront of a Line (where the Line Number would been):<br>
+            <pre>&lt;LABEL&gt; PRINT "GOTO"</pre><br>
+            You can load an Example.bas or mastermind.bas with the Buttons below.<br>
+            Upon pressing the 'Renumber' Button, it will be converted into a BASIC Program.<br><br>
+            <input id="renumber" type="button" value="Renumber!" onClick="renumberThis(document.getElementById('txt').value);" style="height:30px;width:100px">
+            <input id="clear" type="button" value="clear" onClick="document.getElementById('txt').value=''" style="height:30px;width:100px">
+            <input id="loadMM" type="button" value="Load Example" onClick="loadExample();" style="height:30px;width:100px">
+            <input id="loadMM" type="button" value="Load Mastermind.bas" onClick="loadMastermind();" style="height:30px;width:150px">
+            <a href="renumber.pl">command-line version</a><br><br>
+            <textarea rows="30" cols="100" id="txt" placeholder="Enter your Program here..."></textarea>
+    </body>
+</html>
