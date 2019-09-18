@@ -31,10 +31,15 @@ sub processArray {
     if (@arr[$i] =~ $matchOtherToken) {
       $otherToken = $1;
     }
-    my %tokObj = createTokObj($i, $leftToken, $otherToken);
-    $leftToken = undef;
-    $otherToken = undef;
-    @arr = processTokenObj(\@arr, \%tokObj, $i, \@oarr);
+    # Skip blank lines
+    my $trim = @arr[$i];
+    $trim =~ s/^\s+|\s+$//g;
+    if ($trim) {
+      my %tokObj = createTokObj($i, $leftToken, $otherToken);
+      $leftToken = undef;
+      $otherToken = undef;
+      @arr = processTokenObj(\@arr, \%tokObj, $i, \@oarr);
+    }
   }
   return @arr;
 }
@@ -63,7 +68,7 @@ sub processTokenObj {
   my $tokObj = $_[1];
   my $ln = $_[2];
   my @oarr = @{$_[3]};
-  
+
   my $lnr = $tokObj->{'lnr'};
   my $leftTok = $tokObj->{'leftTok'};
   my $otherTok = $tokObj->{'otherTok'};
