@@ -13,8 +13,12 @@ function processArray(arr) {
         if (leftToken) { leftToken = leftToken[0]; }
         let otherToken = arr[i].match(matchOtherToken);
         if (otherToken) { otherToken = otherToken[0]; }
-        const tokObj = createTokObj(i, leftToken, otherToken);
-        arr = processTokenObj(arr, oarr, tokObj, i);
+
+        // Skip blank lines
+        if(arr[i].trim() !== "")  {
+          const tokObj = createTokObj(i, leftToken, otherToken);
+          arr = processTokenObj(arr, oarr, tokObj, i);
+        }
     }
     return arr.join('\n');
 }
@@ -133,4 +137,4 @@ PRINT "   THAT IS IN ZOLTAR'S NUMBER, BUT IN THE  "
 PRINT "   WRONG PLACE."
 PRINT "CAN YOU GUESS HIS NUMBER?"
 GOTO <BEGIN>`
-  }
+}
